@@ -2,6 +2,8 @@ package com.github.jelovirt.dost;
 
 import static org.junit.Assert.fail;
 
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
 import org.slf4j.LoggerFactory;
 
 import org.junit.Before;
@@ -11,21 +13,21 @@ import org.slf4j.impl.SimpleLogger;
 
 import java.io.File;
 
-/**
- * Created by jelovirt on 20.8.2014.
- */
 public class ProcessorTest {
 
-    private final File ditaDir = new File("/Users/jelovirt/Work/github/dita-ot/src/main");
-    private final File srcDir = new File("/Users/jelovirt/Work/github/dita-ot-api/src/test/resources");
-    private final File tmpDir = new File("/Users/jelovirt/Temp");
+    @Rule
+    public final TemporaryFolder tmpDir = new TemporaryFolder();
 
     private Processor p;
 
     @Before
     public void setUp() throws Exception {
-        final ProcessorFactory pf = ProcessorFactory.newInstance();
-        pf.setDitaDir(ditaDir);
+        final String ditaDir = System.getProperty("dita.dir");
+        if (ditaDir == null) {
+            throw new IllegalArgumentException("dita.dir system property not set");
+        }
+        final ProcessorFactory pf = ProcessorFactory.newInstance(new File(ditaDir));
+        pf.setTempDir(tmpDir.newFolder("tmp"));
         p = pf.newProcessor("html5");
     }
 
@@ -39,21 +41,12 @@ public class ProcessorTest {
 
     @Test
     public void testRun() throws Exception {
-        p.setInput(new File(srcDir, "test.ditamap"));
-        p.setOutput(tmpDir);
+        final File mapFile = new File(getClass().getClassLoader().getResource("test.ditamap").toURI());
+        p.setInput(mapFile);
+        p.setOutput(tmpDir.newFolder("out"));
         //p.setLogger( NOPLogger.NOP_LOGGER);
         p.setLogger(LoggerFactory.getLogger(this.getClass()));
         p.run();
-    }
-
-    public static void main(final String[] args) {
-        final ProcessorTest pt = new ProcessorTest();
-        try {
-            pt.setUp();
-            pt.testRun();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 }

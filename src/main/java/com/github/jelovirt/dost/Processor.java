@@ -17,11 +17,11 @@ public class Processor {
     private Map<String, String> args;
     private Logger logger;
 
-    Processor(final File ditaDir, final String transtype) {
+    Processor(final File ditaDir, final String transtype, final Map<String, String> args) {
         this.ditaDir = ditaDir;
-        args = new HashMap<String, String>();
-        args.put("dita.dir", ditaDir.getAbsolutePath());
-        args.put("transtype", transtype);
+        this.args = new HashMap<String, String>(args);
+        this.args.put("dita.dir", ditaDir.getAbsolutePath());
+        this.args.put("transtype", transtype);
     }
 
     public void setInput(final File input) {
@@ -48,7 +48,6 @@ public class Processor {
         final PrintStream savedOut = System.out;
         try {
             final File buildFile = new File(ditaDir, "build.xml");
-            System.err.println("buildFile: " + buildFile.getAbsolutePath());
             final Project project = new Project();
             project.setCoreLoader(this.getClass().getClassLoader());
             if (logger != null) {

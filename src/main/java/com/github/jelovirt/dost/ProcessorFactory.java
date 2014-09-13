@@ -1,30 +1,35 @@
 package com.github.jelovirt.dost;
 
 import java.io.File;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
- * Created by jelovirt on 20.8.2014.
+ * DITA-OT processer factory. Not thread-safe, but can be reused.
  */
 public class ProcessorFactory {
 
-    private File ditaDir;
+    private final File ditaDir;
+    private final Map<String, String> args = new HashMap<String, String>();
 
-    private ProcessorFactory() {
-    }
-
-    public static ProcessorFactory newInstance() {
-        return new ProcessorFactory();
-    }
-
-    public void setDitaDir(final File ditaDir) {
+    private ProcessorFactory(final File ditaDir) {
         this.ditaDir = ditaDir;
+    }
+
+    public static ProcessorFactory newInstance(final File ditaDir) {
+        return new ProcessorFactory(ditaDir);
+    }
+
+    public void setTempDir(final File tmp) {
+        args.put("base.temp.dir", tmp.getAbsolutePath());
     }
 
     public Processor newProcessor(final String transtype) {
         if (ditaDir == null) {
             throw new IllegalStateException();
         }
-        return new Processor(ditaDir, transtype);
+        return new Processor(ditaDir, transtype, Collections.unmodifiableMap(args));
     }
 
 }

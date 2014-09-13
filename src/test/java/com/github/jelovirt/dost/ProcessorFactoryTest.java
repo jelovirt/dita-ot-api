@@ -7,26 +7,24 @@ import org.junit.Test;
 
 import java.io.File;
 
-/**
- * Created by jelovirt on 20.8.2014.
- */
 public class ProcessorFactoryTest {
-
-    private final File ditaDir = new File("/Users/jelovirt/Work/github/dita-ot/src/main");
 
     @Test
     public void testNewInstance() {
-        assertNotNull(ProcessorFactory.newInstance());
+        final String ditaDir = System.getProperty("dita.dir");
+        if (ditaDir == null) {
+            throw new IllegalArgumentException("dita.dir system property not set");
+        }
+        assertNotNull(ProcessorFactory.newInstance(new File(ditaDir)));
     }
 
     @Test
     public void testNewProcessor() {
-        final ProcessorFactory pf = ProcessorFactory.newInstance();
-        try {
-            pf.newProcessor("html5");
-            fail();
-        } catch (final IllegalStateException e) {}
-        pf.setDitaDir(ditaDir);
+        final String ditaDir = System.getProperty("dita.dir");
+        if (ditaDir == null) {
+            throw new IllegalArgumentException("dita.dir system property not set");
+        }
+        final ProcessorFactory pf = ProcessorFactory.newInstance(new File(ditaDir));
         assertNotNull(pf.newProcessor("html5"));
 
     }
