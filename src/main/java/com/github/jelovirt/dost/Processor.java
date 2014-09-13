@@ -50,6 +50,7 @@ public class Processor {
             final File buildFile = new File(ditaDir, "build.xml");
             System.err.println("buildFile: " + buildFile.getAbsolutePath());
             final Project project = new Project();
+            project.setCoreLoader(this.getClass().getClassLoader());
             if (logger != null) {
                 project.addBuildListener(new LoggerListener(logger));
             }

@@ -12,7 +12,7 @@ import java.io.File;
  */
 public class ProcessorFactoryTest {
 
-    private final File ditaDir = new File("C:\\Users\\jelovirt.IDEAL\\Work\\dita-ot.develop\\src\\main");
+    private final File ditaDir = new File("/Users/jelovirt/Work/github/dita-ot/src/main");
 
     @Test
     public void testNewInstance() {

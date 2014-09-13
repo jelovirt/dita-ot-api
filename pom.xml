@@ -1,72 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>dita-ot-api</groupId>
-    <artifactId>dita-ot-api</artifactId>
-    <version>1.0-SNAPSHOT</version>
-<dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>dita-ot-api</groupId>
+  <artifactId>dita-ot-api</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <dependencies>
     <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.11</version>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
     </dependency>
     <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.7.7</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.7</version>
     </dependency>
     <dependency>
-        <groupId>org.apache.ant</groupId>
-        <artifactId>ant</artifactId>
-        <version>1.9.4</version>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant</artifactId>
+      <version>1.9.4</version>
     </dependency>
     <dependency>
-        <groupId>org.apache.ant</groupId>
-        <artifactId>ant-apache-resolver</artifactId>
-        <version>1.9.4</version>
-        <scope>runtime</scope>
+      <groupId>org.apache.ant</groupId>
+      <artifactId>ant-apache-resolver</artifactId>
+      <version>1.9.4</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
-        <groupId>xerces</groupId>
-        <artifactId>xercesImpl</artifactId>
-        <version>2.11.0</version>
-        <scope>runtime</scope>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <version>2.11.0</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
-        <groupId>xml-resolver</groupId>
-        <artifactId>xml-resolver</artifactId>
-        <version>1.2</version>
-        <scope>runtime</scope>
+      <groupId>xml-resolver</groupId>
+      <artifactId>xml-resolver</artifactId>
+      <version>1.2</version>
+      <scope>runtime</scope>
+    </dependency>
+    <!--dependency>
+      <groupId>net.sf.saxon</groupId>
+      <artifactId>Saxon-HE</artifactId>
+      <version>9.5.1-6</version>
+      <scope>runtime</scope>
+    </dependency-->
+    <dependency>
+      <groupId>net.sourceforge.saxon</groupId>
+      <artifactId>saxon</artifactId>
+      <version>9.1.0.8</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
-        <groupId>net.sf.saxon</groupId>
-        <artifactId>Saxon-HE</artifactId>
-        <version>9.5.1-6</version>
-        <scope>runtime</scope>
+      <groupId>net.sourceforge.saxon</groupId>
+      <artifactId>saxon</artifactId>
+      <version>9.1.0.8</version>
+      <scope>runtime</scope>
+      <classifier>dom</classifier>
     </dependency>
     <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-simple</artifactId>
-        <version>1.7.7</version>
-        <scope>runtime</scope>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.7.7</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
-        <groupId>org.dita</groupId>
-        <artifactId>dost</artifactId>
-        <version>2.0.M3</version>
-        <scope>system</scope>
-        <systemPath>C:\Users\jelovirt.IDEAL\Work\dita-ot.develop\src\main\lib\dost.jar</systemPath>
+      <groupId>org.dita</groupId>
+      <artifactId>dost</artifactId>
+      <version>2.0.M3</version>
+      <scope>system</scope>
+      <systemPath>/Users/jelovirt/Work/github/dita-ot/src/main/lib/dost.jar</systemPath>
     </dependency>
     <dependency>
-        <groupId>org.dita</groupId>
-        <artifactId>dost</artifactId>
-        <classifier>configuration</classifier>
-        <version>2.0.M3</version>
-        <scope>system</scope>
-        <systemPath>C:\Users\jelovirt.IDEAL\Work\dita-ot.develop\src\main\lib\dost-configuration.jar</systemPath>
+      <groupId>org.dita</groupId>
+      <artifactId>dost</artifactId>
+      <classifier>configuration</classifier>
+      <version>2.0.M3</version>
+      <scope>system</scope>
+      <systemPath>/Users/jelovirt/Work/github/dita-ot/src/main/lib/dost-configuration.jar</systemPath>
     </dependency>
-</dependencies>
+  </dependencies>
 </project>

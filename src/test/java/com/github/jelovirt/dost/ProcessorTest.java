@@ -16,8 +16,9 @@ import java.io.File;
  */
 public class ProcessorTest {
 
-    private final File ditaDir = new File("C:\\Users\\jelovirt.IDEAL\\Work\\dita-ot.develop\\src\\main");
-    private final File tmpDir = new File("C:\\Temp");
+    private final File ditaDir = new File("/Users/jelovirt/Work/github/dita-ot/src/main");
+    private final File srcDir = new File("/Users/jelovirt/Work/github/dita-ot-api/src/test/resources");
+    private final File tmpDir = new File("/Users/jelovirt/Temp");
 
     private Processor p;
 
@@ -38,12 +39,21 @@ public class ProcessorTest {
 
     @Test
     public void testRun() throws Exception {
-        p.setInput(new File(tmpDir, "test.ditamap"));
+        p.setInput(new File(srcDir, "test.ditamap"));
         p.setOutput(tmpDir);
         //p.setLogger( NOPLogger.NOP_LOGGER);
         p.setLogger(LoggerFactory.getLogger(this.getClass()));
         p.run();
     }
 
+    public static void main(final String[] args) {
+        final ProcessorTest pt = new ProcessorTest();
+        try {
+            pt.setUp();
+            pt.testRun();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
