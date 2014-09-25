@@ -44,8 +44,8 @@ public class ProcessorTest {
         final File mapFile = new File(getClass().getClassLoader().getResource("test.ditamap").toURI());
         p.setInput(mapFile);
         p.setOutput(tmpDir.newFolder("out"));
-        //p.setLogger( NOPLogger.NOP_LOGGER);
-        p.setLogger(LoggerFactory.getLogger(this.getClass()));
+        p.setLogger(NOPLogger.NOP_LOGGER);
+        //p.setLogger(LoggerFactory.getLogger(this.getClass()));
         p.run();
     }
 
