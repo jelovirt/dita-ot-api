@@ -1,4 +1,4 @@
-package com.github.jelovirt.dost;
+package com.jelovirt.dita;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;

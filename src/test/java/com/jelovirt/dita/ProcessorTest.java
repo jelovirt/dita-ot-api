@@ -1,15 +1,13 @@
-package com.github.jelovirt.dost;
+package com.jelovirt.dita;
 
 import static org.junit.Assert.fail;
 
 import org.junit.Rule;
 import org.junit.rules.TemporaryFolder;
-import org.slf4j.LoggerFactory;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.helpers.NOPLogger;
-import org.slf4j.impl.SimpleLogger;
 
 import java.io.File;
 

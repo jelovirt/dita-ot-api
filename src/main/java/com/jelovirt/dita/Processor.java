@@ -1,4 +1,4 @@
-package com.github.jelovirt.dost;
+package com.jelovirt.dita;
 
 import org.apache.tools.ant.*;
 import org.slf4j.Logger;

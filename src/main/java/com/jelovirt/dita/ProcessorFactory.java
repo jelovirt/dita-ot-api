@@ -1,4 +1,4 @@
-package com.github.jelovirt.dost;
+package com.jelovirt.dita;
 
 import java.io.File;
 import java.util.Collections;
