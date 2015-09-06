@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+//apply plugin: 'distribution'
+
+group = 'com.elovirta.com'
+version = '1.0.0'
+
+description = """DITA Open Toolkit API"""
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.7'
+    compile group: 'org.apache.ant', name: 'ant', version:'1.9.4'
+    runtime group: 'org.dita-ot', name: 'dost', version:'2.2.0'
+    testCompile group: 'junit', name: 'junit', version:'4.11'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version:'1.7.7'
+}

@@ -1,4 +1,4 @@
-package com.jelovirt.dita;
+package com.elovirta.dita;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
@@ -26,7 +26,6 @@ public class ProcessorFactoryTest {
         }
         final ProcessorFactory pf = ProcessorFactory.newInstance(new File(ditaDir));
         assertNotNull(pf.newProcessor("html5"));
-
     }
 
 }

@@ -1,4 +1,4 @@
-package com.jelovirt.dita;
+package com.elovirta.dita;
 
 import java.io.File;
 import java.util.Collections;

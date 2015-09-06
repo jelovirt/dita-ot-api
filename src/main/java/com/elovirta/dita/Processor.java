@@ -1,4 +1,4 @@
-package com.jelovirt.dita;
+package com.elovirta.dita;
 
 import org.apache.tools.ant.*;
 import org.slf4j.Logger;

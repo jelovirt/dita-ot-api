@@ -1,4 +1,4 @@
-package com.jelovirt.dita;
+package com.elovirta.dita;
 
 import static org.junit.Assert.fail;
 
