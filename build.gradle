@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 //apply plugin: 'distribution'
 
-group = 'com.elovirta.com'
+group = 'com.elovirta'
 version = '1.0.0'
 
 description = """DITA Open Toolkit API"""

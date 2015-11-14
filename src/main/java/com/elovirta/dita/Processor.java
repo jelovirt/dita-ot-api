@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 
 import java.io.File;
 import java.io.PrintStream;
+import java.net.URI;
 import java.util.*;
 import java.util.regex.Pattern;
 
@@ -25,11 +26,22 @@ public class Processor {
     }
 
     public void setInput(final File input) {
-        args.put("args.input", input.getAbsolutePath());
+        setInput(input.getAbsoluteFile().toURI());
+    }
+
+    public void setInput(final URI input) {
+        args.put("args.input", input.toString());
     }
 
     public void setOutput(final File output) {
         args.put("output.dir", output.getAbsolutePath());
+    }
+
+    public void setOutput(final URI output) {
+        if (!output.getScheme().equals("file")) {
+            throw new IllegalArgumentException("Only file scheme allowed as output directory URI");
+        }
+        args.put("output.dir", output.toString());
     }
 
     public void setProperty(final String name, final String value) {
@@ -53,8 +65,8 @@ public class Processor {
             if (logger != null) {
                 project.addBuildListener(new LoggerListener(logger));
             }
-            System.setOut(new PrintStream(new DemuxOutputStream(project, false)));
-            System.setErr(new PrintStream(new DemuxOutputStream(project, true)));
+//            System.setOut(new PrintStream(new DemuxOutputStream(project, false)));
+//            System.setErr(new PrintStream(new DemuxOutputStream(project, true)));
             project.fireBuildStarted();
             project.init();
             project.setBaseDir(ditaDir);
@@ -135,7 +147,7 @@ public class Processor {
             }
             switch (level) {
                 case Project.MSG_DEBUG:
-                    logger.debug(message);
+                    logger.trace(message);
                     break;
                 case Project.MSG_VERBOSE:
                     logger.debug(message);
