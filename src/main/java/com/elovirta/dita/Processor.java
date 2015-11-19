@@ -11,6 +11,8 @@ import java.util.regex.Pattern;
 
 /**
  * DITA-OT processer. Not thread-safe, but can be reused.
+ *
+ * @since 1.0
  */
 public class Processor {
 
@@ -20,44 +22,100 @@ public class Processor {
 
     Processor(final File ditaDir, final String transtype, final Map<String, String> args) {
         this.ditaDir = ditaDir;
-        this.args = new HashMap<String, String>(args);
+        this.args = new HashMap<>(args);
         this.args.put("dita.dir", ditaDir.getAbsolutePath());
         this.args.put("transtype", transtype);
     }
 
+    /**
+     * Set input document.
+     *
+     * @param input absolute input document
+     * @since 1.0
+     */
+    @Deprecated
     public void setInput(final File input) {
-        setInput(input.getAbsoluteFile().toURI());
+        if (!input.isAbsolute()) {
+            throw new IllegalArgumentException();
+        }
+        setInput(input.toURI());
     }
 
+    /**
+     * Set input document.
+     *
+     * @param input absolute input document
+     * @since 1.0
+     */
     public void setInput(final URI input) {
+        if (!input.isAbsolute()) {
+            throw new IllegalArgumentException();
+        }
         args.put("args.input", input.toString());
     }
 
+    /**
+     * Set output document.
+     *
+     * @param output absolute output document
+     * @since 1.0
+     */
+    @Deprecated
     public void setOutput(final File output) {
+        if (!output.isAbsolute()) {
+            throw new IllegalArgumentException();
+        }
         args.put("output.dir", output.getAbsolutePath());
     }
 
+    /**
+     * Set output document.
+     *
+     * @param output absolute output document
+     * @since 1.0
+     */
     public void setOutput(final URI output) {
+        if (!output.isAbsolute()) {
+            throw new IllegalArgumentException();
+        }
         if (!output.getScheme().equals("file")) {
             throw new IllegalArgumentException("Only file scheme allowed as output directory URI");
         }
         args.put("output.dir", output.toString());
     }
 
+    /**
+     * Set property.
+     *
+     * @param name property name
+     * @param value property value
+     * @since 1.0
+     */
     public void setProperty(final String name, final String value) {
         args.put(name, value);
     }
 
+    /**
+     * Set logger.
+     *
+     * @param logger message logger
+     * @since 1.0
+     */
     public void setLogger(final Logger logger) {
         this.logger = logger;
     }
 
+    /**
+     * Execute conversion.
+     *
+     * @since 1.0
+     */
     public void run() {
         if (!args.containsKey("args.input")) {
             throw new IllegalStateException();
         }
-        final PrintStream savedErr = System.err;
-        final PrintStream savedOut = System.out;
+//        final PrintStream savedErr = System.err;
+//        final PrintStream savedOut = System.out;
         try {
             final File buildFile = new File(ditaDir, "build.xml");
             final Project project = new Project();
@@ -75,12 +133,12 @@ public class Processor {
                 project.setUserProperty(arg.getKey(), arg.getValue());
             }
             ProjectHelper.configureProject(project, buildFile);
-            final Vector<String> targets = new Vector<String>();
+            final Vector<String> targets = new Vector<>();
             targets.addElement(project.getDefaultTarget());
             project.executeTargets(targets);
         } finally {
-            System.setOut(savedOut);
-            System.setErr(savedErr);
+//            System.setOut(savedOut);
+//            System.setErr(savedErr);
         }
     }
 
